@@ -1,0 +1,31 @@
+name: Run Minecraft Bot
+
+on:
+  workflow_dispatch: # Allows manual trigger
+  schedule:
+    - cron: '0 */6 * * *' # Runs every 6 hours
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run bot with auto-restart
+        run: |
+          while true; do
+            echo "Starting Minecraft bot..."
+            node index.js
+            echo "Bot process ended. Restarting in 10 seconds..."
+            sleep 10
+          done
+        timeout-minutes: 360 # 6 hours total
