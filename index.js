@@ -10,8 +10,8 @@ function createBot() {
   console.log(`🔗 Connection attempt #${connectionAttempts} - This will AUTO-START the server!`);
   
   bot = mineflayer.createBot({
-    host: '49.12.82.39',
-    port: 25852,
+    host: 'madlevel.minekeep.gg',
+    port: 25565,
     username: 'AutoStartBot',
     version: '1.21', // Match your server version
     checkTimeoutInterval: 60 * 1000, // Longer timeout for server start
